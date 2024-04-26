@@ -1,0 +1,14 @@
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--gzvcf /storage/research/iee_evol/StickleYproject_DJandZY_2024/99_variant_calls/Ga/vcfs/Ga.SNP.Q30.GQ20.meanDP10-50.minDP8.vcf.gz
+	--hardy
+	--out /storage/scratch/iee/dj20y461/Stickleback/Y_comp/Sex_chrom_stats/Heterozygosity/Ga/Ga.SNP.Q30.GQ20.meanDP10-50.minDP8
+
+Using zlib version: 1.2.11
+After filtering, kept 44 out of 44 Individuals
+Outputting HWE statistics (but only for biallelic loci)
+After filtering, kept 10195338 out of a possible 10195338 Sites
+Run Time = 257.00 seconds
