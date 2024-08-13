@@ -17,9 +17,21 @@ module add UHTS/Analysis/vcftools/0.1.15;
 INVCF=/storage/research/iee_evol/StickleYproject_DJandZY_2024/99_variant_calls/Gw/vcfs/Gw_Sardell_Wild/Gw.Sardell.Wild.puresamples.SNP.Q30.GQ20.minDP8.vcf.gz
 OUT_PREFIX=/storage/scratch/iee/dj20y461/Stickleback/Y_comp/Sex_chrom_stats/Heterozygosity/Gw/Gw.Sardell.Wild.puresamples.SNP.Q30.GQ20.minDP8
 
+MALES=/storage/homefs/dj20y461/Stickleback/Stickle_Y_comp/code/SLURM/Gw/males.txt
+FEMALES=/storage/homefs/dj20y461/Stickleback/Stickle_Y_comp/code/SLURM/Gw/females.txt
+
 vcftools \
     --gzvcf $INVCF \
+    --keep $MALES \
+    --max-missing-count 10 \
     --hardy \
-    --out $OUT_PREFIX
+    --out ${OUT_PREFIX}_MALES
+
+vcftools \
+    --gzvcf $INVCF \
+    --keep $FEMALES \
+    --max-missing-count 5 \
+    --hardy \
+    --out ${OUT_PREFIX}_FEMALES
 
 
