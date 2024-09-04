@@ -204,7 +204,7 @@ def K2P_bin_summarize(data):
 
     result=normalize_and_smooth(bin_counts_data,stratum_length)
     result['Type']=sex
-    result['Grouop']=stratum
+    result['Group']=stratum
 
     return result
 
@@ -249,7 +249,7 @@ def main():
 
     strata=strata_Ga
 
-    final=pd.DataFrame(columns=["K2P_Range","Midpoint","Count","Normalized_Count","Smoothed_Normalized_Count","type"])
+    final=pd.DataFrame(columns=["K2P_Range","Midpoint","Count","Normalized_Count","Smoothed_Normalized_Count","Type","Group"])
     
     for stratum in strata:
         print(f'{stratum} start:')
