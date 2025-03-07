@@ -331,7 +331,96 @@ stickle2_humans_all_orths
 
 length(stickle2_humans_all_orths$ensembl_gene_id)
 
-write.csv(stickle2_humans_all_orths, 
-          "~/Data_temp/Stickleback/Stickle_Y_comp/results/BiomaRt/stickle_2_humans_all_orths.csv",
+
+###############################################################################
+#################### Add the haploinsufficiency score #########################
+###############################################################################
+
+#HI scores from Huang et al 2010 (doi:10.1371/journal.pgen.1001154)
+#Genes are denoted with gene names now ENSEMBL ids, so I need to first get the human gene names for protein coding genes. 
+
+human<- useMart('ensembl', dataset = "hsapiens_gene_ensembl")
+
+human_attributes<-  c("ensembl_gene_id", "external_gene_name",
+                      "gene_biotype")
+
+human_genes <-  getBM(human_attributes, 
+                            values=TRUE, 
+                            mart = human, 
+                            uniqueRows=T)
+
+human_pc_genes <- human_genes %>%
+  filter(gene_biotype == "protein_coding")
+
+length(human_pc_genes$ensembl_gene_id)
+# >23258
+
+##########################
+## Now read in the HI data
+
+HIs <- read.delim("~/Data_temp/Stickleback/Stickle_Y_comp/results/BiomaRt/HI_Predictions_Version3_formatted.bed",
+                  header = T,
+                  row.names = NULL)
+
+## Now find HI results for genes that are in the ENSEMBL 
+
+HIs_kept <- HIs %>%
+  filter(gene %in% human_pc_genes$external_gene_name)
+
+## now merge the datasets 
+
+names(human_pc_genes)
+names(HIs_kept)
+
+## first changing the name of the gene column in HI df to match the ENSEMBL one so they can be merged on that column
+names(HIs_kept)[names(HIs_kept) == 'gene'] <- 'external_gene_name'
+
+## also changing the names of the chrom/start/end columns as they may differ between the dfs. 
+names(HIs_kept)[names(HIs_kept) == 'chrom'] <- 'chrom_HG37'
+names(HIs_kept)[names(HIs_kept) == 'chrom_start'] <- 'chrom_start_HG37'
+names(HIs_kept)[names(HIs_kept) == 'chrom_end'] <- 'chrom_end_HG37'
+
+
+ENSEMBL_HIs <- merge(human_pc_genes,
+                     HIs_kept)
+
+## Outputting
+
+## just changing the commas in the last column, as they mess up the csv
+
+ENSEMBL_HIs_fmtd <- data.frame(lapply(ENSEMBL_HIs, function(x) {
+  gsub(",", "/", x)
+  }))
+
+write.csv(ENSEMBL_HIs_fmtd, 
+          "~/Data_temp/Stickleback/Stickle_Y_comp/results/BiomaRt/ENSEMBL_to_Haploinsufficiency_scores.csv",
           row.names = F)
+
+
+###########################################################################
+###########################     Chr 12    #################################
+###########################################################################
+
+## First find one2one orthologs on ChrXIX
+stickle2humans_chr12_one2ones <- stickle2humans_orths %>%
+  filter(hsapiens_homolog_orthology_type == "ortholog_one2one",
+         chromosome_name == "XII")
+names(stickle2humans_chr12_one2ones)
+
+length(stickle2humans_chr12_one2ones$ensembl_gene_id)
+
+write.csv(stickle2humans_chr12_one2ones, 
+          "~/Data_temp/Stickleback/Stickle_Y_comp/results/BiomaRt/stickle_2_humans_all_orths_ch12.csv",
+          row.names = F)
+
+
+
+
+
+
+
+
+
+
+
 
