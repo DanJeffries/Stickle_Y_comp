@@ -1,0 +1,57 @@
+==================================================
+file name: Gw.AX_Y.fasta            
+sequences:           395
+total length:  554719064 bp  (554705664 bp excl N/X-runs)
+GC level:         45.32 %
+bases masked:  145804047 bp ( 26.28 %)
+==================================================
+               number of      length   percentage
+               elements*    occupied  of sequence
+--------------------------------------------------
+Retroelements       176700     73503009 bp   13.25 %
+   SINEs:             1364       170545 bp    0.03 %
+   Penelope             58        31847 bp    0.01 %
+   LINEs:            66640     24262372 bp    4.37 %
+    CRE/SLACS            0            0 bp    0.00 %
+     L2/CR1/Rex      54103     17298668 bp    3.12 %
+     R1/LOA/Jockey    2173      2154687 bp    0.39 %
+     R2/R4/NeSL        944       567126 bp    0.10 %
+     RTE/Bov-B        3474      1046015 bp    0.19 %
+     L1/CIN4          1196       528534 bp    0.10 %
+   LTR elements:    108696     49070092 bp    8.85 %
+     BEL/Pao           610       400521 bp    0.07 %
+     Ty1/Copia        4275      1180115 bp    0.21 %
+     Gypsy/DIRS1     30395     16398179 bp    2.96 %
+       Retroviral      260        40811 bp    0.01 %
+
+DNA transposons     188345     48963433 bp    8.83 %
+   hobo-Activator     5864      1893367 bp    0.34 %
+   Tc1-IS630-Pogo     5361      1016456 bp    0.18 %
+   En-Spm                0            0 bp    0.00 %
+   MuDR-IS905            0            0 bp    0.00 %
+   PiggyBac            535       194768 bp    0.04 %
+   Tourist/Harbinger  2045       431353 bp    0.08 %
+   Other (Mirage,       20         1314 bp    0.00 %
+    P-element, Transib)
+
+Rolling-circles        481       581182 bp    0.10 %
+
+Unclassified:        26079      6197838 bp    1.12 %
+
+Total interspersed repeats:   128664280 bp   23.19 %
+
+
+Small RNA:               0            0 bp    0.00 %
+
+Satellites:              0            0 bp    0.00 %
+Simple repeats:     273716     15292778 bp    2.76 %
+Low complexity:      20964      1265807 bp    0.23 %
+==================================================
+
+* most repeats fragmented by insertions or deletions
+  have been counted as one element
+                                                      
+
+RepeatMasker version 4.1.2-p1 , sensitive mode
+                                   
+run with rmblastn version 2.14.1+
